@@ -3,12 +3,12 @@ from .models import Profile
 from .serializers import ProfileSerializer
 
 
-class ProfileListView(generics.ListCreateAPIView):
+class ProfileList(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
 
-class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
