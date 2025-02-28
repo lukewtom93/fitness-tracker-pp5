@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, Weight, CalorieEntry
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class WeightSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Profile
+        model = Weight
         fields = '__all__'
 
 
@@ -22,5 +22,5 @@ class CalorieEntrySerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Profile
+        model = CalorieEntry
         fields = '__all__'

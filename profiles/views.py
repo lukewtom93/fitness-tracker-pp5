@@ -1,18 +1,23 @@
 from rest_framework import generics, permissions
 from .models import Profile, Weight, CalorieEntry
-from .serializers import ProfileSerializer, WeightSerializer, CalorieEntrySerializer
+from .serializers import (
+    ProfileSerializer,
+    WeightSerializer,
+    CalorieEntrySerializer,
+)
+from api.permissions import IsOwnerOrReadOnly
 
 
-class ProfileList(generics.ListCreateAPIView):
+class ProfileList(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
-class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
 
 class WeightList(generics.ListCreateAPIView):
