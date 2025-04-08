@@ -39,25 +39,7 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 
-class Weight(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='weights')
-    logged_at = models.DateField(auto_now_add=True)
-    current_weight = models.DecimalField(max_digits=5, decimal_places=2)
 
-    class Meta:
-        ordering = ['-logged_at']
-
-    def __str__(self):
-        return f'{self.owner.username} - {self.date} - {self.weight}'
    
 
-class CalorieEntry(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='calories')
-    logged_at = models.DateField(auto_now_add=True)
-    calories = models.PositiveIntegerField()
 
-    class Meta:
-        ordering = ['-logged_at']
-
-    def __str__(self):
-        return f'{self.owner.username} - {self.date} - {self.calories}'
