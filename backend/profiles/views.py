@@ -1,7 +1,9 @@
+from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 from .models import Profile
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, UserSerializer
 from api.permissions import IsOwnerOrReadOnly
+
 
 
 class ProfileList(generics.ListAPIView):
@@ -16,5 +18,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     permission_classes = [IsOwnerOrReadOnly]
 
 
-
-
+class ProfileCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
