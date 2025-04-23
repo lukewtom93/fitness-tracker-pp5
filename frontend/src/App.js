@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Login from "./pages/login"
 import Register from "./pages/register"
 import Home from "./pages/home"
@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoutes"
 
 function Logout() {
   localStorage.clear()
-  return <NavLink to="/login" />
+  return <Navigate to="/login" />
 }
 
 function RegisterAndLogout() {
