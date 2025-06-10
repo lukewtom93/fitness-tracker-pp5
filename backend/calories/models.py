@@ -11,4 +11,4 @@ class CalorieEntry(models.Model):
         ordering = ['-logged_at']
 
     def __str__(self):
-        return f'{self.owner.username} - {self.date} - {self.calories}'
+        return f'{self.owner.username} - {self.logged_at} - {self.calories}'

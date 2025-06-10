@@ -29,9 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -57,12 +59,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
     'dj_database_url',
     'api',
     'profiles',
     'weights',
     'calories',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -79,11 +81,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
+WSGI_APPLICATION = 'api.wsgi.application'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'staticfiles', 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'staticfiles', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'api.wsgi.application'
+
 
 
 # Database
@@ -164,5 +167,9 @@ WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+       "http://localhost:3000",
+       "http://127.0.0.1:3000",
+
+]
+CORS_ALLOW_CREDENTIALS = True
