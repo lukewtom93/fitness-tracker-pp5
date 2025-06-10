@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path, include
 from django.views.generic import TemplateView
 from profiles.views import ProfileCreate
@@ -23,12 +24,17 @@ from rest_framework_simplejwt.views import (
 )
 
 
+def data_view(request):
+    return JsonResponse({"message": "Hello from backend!"})
+
+
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('api/profile/register/', ProfileCreate.as_view(), name='register'),
     path('api/token/', TokenObtainPairView.as_view(), name='get_token'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='refresh'),
+    path('api/data', data_view, name='data_view'),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('profiles.urls')),
     path('api/', include('weights.urls')),
