@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Home() {
-    const [data, setData] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [entries, setEntries] = useState([]);
   const [food, setFood] = useState("");
@@ -11,12 +11,12 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/data");
+        const response = await fetch("/api/calories/");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const result = await response.json();
-        setData(result);
+        setEntries(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
