@@ -51,9 +51,22 @@ function Home() {
     }
   };
 
-  const handleDeleteEntry = (index) => {
-    const updatedEntries = entries.filter((_, i) => i !== index);
-    setEntries(updatedEntries);
+  const handleDeleteEntry = async (id) => {
+    try {
+      const response = await fetch(`/api/calories/${id}/`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("access")}`,
+        },
+      });
+      if (response.ok) {
+        setEntries(entries.filter(entry => entry.id !== id));
+      } else {
+        throw new Error("Failed to delete entry");
+      }
+    } catch (error) {
+      console.error("Error deleting entry:", error);
+    }
   };
 
   const totalCalories = entries.reduce((total, entry) => total + entry.calories, 0);
@@ -117,7 +130,7 @@ function Home() {
                   <td>
                     <button
                       className="btn btn-danger btn-sm"
-                      onClick={() => handleDeleteEntry(index)}
+                      onClick={() => handleDeleteEntry(entry.id)}
                     >
                       Delete
                     </button>
