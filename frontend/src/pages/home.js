@@ -27,11 +27,27 @@ function Home() {
     fetchData();
   }, []);
 
-  const handleAddEntry = () => {
+  const handleAddEntry = async () => {
     if (food && calories) {
-      setEntries([...entries, { food, calories: parseInt(calories) }]);
-      setFood("");
-      setCalories("");
+      try {
+        const response = await fetch("/api/calories/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("access")}`,
+          },
+          body: JSON.stringify({ food, calories: parseInt(calories) }),
+        });
+        if (!response.ok) {
+          throw new Error("Failed to add entry");
+        }
+        const newEntry = await response.json();
+        setEntries([...entries, newEntry]);
+        setFood("");
+        setCalories("");
+      } catch (error) {
+        console.error("Error adding entry:", error);
+      }
     }
   };
 

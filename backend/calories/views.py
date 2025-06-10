@@ -8,6 +8,11 @@ class CalorieEntryList(generics.ListCreateAPIView):
     serializer_class = CalorieEntrySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
 
 class CalorieEntryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = CalorieEntry.objects.all()
