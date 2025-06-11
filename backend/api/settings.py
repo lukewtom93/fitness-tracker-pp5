@@ -31,7 +31,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
+                 "localhost",
+                 ]
 
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
 
@@ -65,11 +67,11 @@ INSTALLED_APPS = [
     'profiles',
     'weights',
     'calories',
-    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'django.corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,7 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.corsheaders.middleware.CorsPostCsrfMiddleware',
+
     
 ]
 
