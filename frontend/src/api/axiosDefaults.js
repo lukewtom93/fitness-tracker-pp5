@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ACCESS_TOKEN } from '../constants';
 
 const api = axios.create({
-    baseURL: '/api',
+    baseURL: '/',
 });
 
 api.interceptors.request.use(
