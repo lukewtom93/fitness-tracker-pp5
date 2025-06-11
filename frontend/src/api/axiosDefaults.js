@@ -4,7 +4,7 @@ import { ACCESS_TOKEN } from '../constants';
 const api = axios.create({
     baseURL:
         process.env.NODE_ENV === "production"
-            ? "https://fitness-tracker-pp5-52ea60f889f7.herokuapp.com/"
+            ? "https://fitness-tracker-pp5-52ea60f889f7.herokuapp.com/api"
             : "/api",
 });
 
