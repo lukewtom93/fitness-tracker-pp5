@@ -2,7 +2,10 @@ import axios from 'axios';
 import { ACCESS_TOKEN } from '../constants';
 
 const api = axios.create({
-    baseURL: '/api',
+    baseURL:
+        process.env.NODE_ENV === "production"
+            ? "https://fitness-tracker-pp5-52ea60f889f7.herokuapp.com/api"
+            : "/api",
 });
 
 api.interceptors.request.use(
