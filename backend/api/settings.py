@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
+ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com","https://calorie-tracker-123-11e6430e95e7.herokuapp.com",
                  'localhost',
                  ]
 
