@@ -31,7 +31,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com","https://calorie-tracker-123-11e6430e95e7.herokuapp.com",
+ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
+                 "calorie-tracker-123-11e6430e95e7.herokuapp.com",
                  'localhost',
                  ]
 
@@ -176,6 +177,7 @@ CORS_ALLOWED_ORIGINS = [
        "http://localhost:3000",
        "http://127.0.0.1:3000",
        "https://fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
+       "https://calorie-tracker-123-11e6430e95e7.herokuapp.com",
 
 ]
 CORS_ALLOW_CREDENTIALS = True
