@@ -32,6 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
+                 'localhost',
                  ]
 
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
