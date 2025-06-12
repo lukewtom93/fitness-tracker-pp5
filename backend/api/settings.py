@@ -32,8 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ["fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
-                 "calorie-tracker-123-11e6430e95e7.herokuapp.com",
-                 'localhost',
+                 "localhost",
                  ]
 
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
@@ -61,7 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    'django-cors-headers',
     'rest_framework',
     'dj_database_url',
     'api',
@@ -73,7 +72,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -92,7 +90,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend', 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'staticfiles', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -166,7 +164,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -177,7 +175,6 @@ CORS_ALLOWED_ORIGINS = [
        "http://localhost:3000",
        "http://127.0.0.1:3000",
        "https://fitness-tracker-pp5-52ea60f889f7.herokuapp.com",
-       "https://calorie-tracker-123-11e6430e95e7.herokuapp.com",
 
 ]
 CORS_ALLOW_CREDENTIALS = True
